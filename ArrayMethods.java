@@ -55,10 +55,23 @@ public class ArrayMethods{
    /*
    *PART 3 - use prior methods where appropriate
    */
-   //public static boolean isRowMagic(int[][] ary){}
+   public static boolean isRowMagic(int[][] ary){
+     int[] rowSums = allRowSums(ary);
+     for (int i = 0; i < rowSums.length - 1; i++) {
+       if (rowSums[i] != rowSums[i + 1]) return false;
+     }
+     return true;
+   }
+
      //checks if the array is row-magic (this means that every row has the same row sum).
 
-   //public static boolean isColumnMagic(int[][] ary){}
+   public static boolean isColumnMagic(int[][] ary){
+     int[] colSums = allColSums(ary);
+     for (int i = 0; i < colSums.length - 1; i++) {
+       if (colSums[i] != colSums[i + 1]) return false;
+     }
+     return true;
+   }
     //checks if the array is column-magic (this means that every column has the same column sum).
 
 }
