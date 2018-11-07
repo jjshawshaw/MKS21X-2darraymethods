@@ -5,10 +5,8 @@ public class ArrayMethods{
    public static int rowSum(int[][] ary, int x){
     //returns the sum of the elements in Row x of ary
     int out = 0;
-    int rowNum = ary.length;
-    if (x >= rowNum) return out;
-    int colNum = ary[x].length;
-    for (int i = 0; i < colNum; i++){
+    if (x >= ary.length) return out;
+    for (int i = 0; i < ary[x].length; i++){
       out += ary[x][i];
     }
     return out;
@@ -19,23 +17,18 @@ public class ArrayMethods{
     //returns the sum of the elements in Column x of ary (careful with rows of different lengths!).
     //When a row is not long enough to reach the column count it as a zero. (NO indexOutOfBounds should ever occur)
     int out = 0;
-    int rowNum = ary.length;
-    int maxCol = 0;
     for (int i = 0; i < ary.length; i++) {
-      if (ary[i].length > maxCol) maxCol = ary[i].length;
-    }
-    if (x >= maxCol) return out;
-    for (int i = 0; i < rowNum; i++){
-      if (ary[i].length > x) out += ary[i][x];    }
+      if (ary[i].length > x) out += ary[i][x];
+      }
     return out;
-  }
+    }
    /*
    *PART 2 - use prior methods where appropriate
    */
    public static int[] allRowSums(int[][] ary){
      int[] out = new int[ary.length];
      for (int i = 0; i < ary.length; i++) {
-       out[i] += rowSum(ary, i);
+       out[i] = rowSum(ary, i);
      }
      return out;
    }
@@ -43,13 +36,13 @@ public class ArrayMethods{
     //Index i of the return array contains the sum of elements in row i.
 
     public static int[] allColSums(int[][] ary){
-      int[] out = new int[ary.length];
       int maxCol = 0;
       for (int i = 0; i < ary.length; i++) {
-        if (ary[i].length > maxCol) maxCol = ary[i].length;
+        if (maxCol < ary[i].length) maxCol = ary[i].length;
       }
+      int[] out = new int[maxCol];
       for (int i = 0; i < maxCol; i++) {
-        out[i] += columnSum(ary, i);
+        out[i] = columnSum(ary, i);
       }
       return out;
     }
